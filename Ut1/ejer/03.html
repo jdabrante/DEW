@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="mytxt">Aprende JS con MyFPSchool!</p>
+    <p id="q1">JS es un lenguaje de programacion</p>
+    <button type="button" onclick=" True('Verdadero', 'q1')" id = "first">Verdadero</button>
+    <button type="button" onclick=" False('Falso', 'q1')" id = "first">Falso</button>
+
+    <p id="q2">HTML es un lenguaje de programacion</p>
+    <button type="button" onclick=" True('Falso', 'q2')" id = "second">Verdadero</button>
+    <button type="button" onclick=" False('Verdadero', 'q2')" id = "second">Falso</button>
+
+    <button type="button" onclick="myFunction()">Dale!</button>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("mytxt");
+            x.style.fontSize = "25px";
+            x.style.color = "red";
+        }
+
+        function True(x, id) {
+            q = document.getElementById(id);
+            if (x == 'Verdadero') {
+                q.style.color = 'green';
+            } else {
+                q.style.color = 'red';
+            }
+        }
+
+        function False(x, id) {
+            q = document.getElementById(id);
+            if (x == 'Verdadero') {
+                q.style.color = 'red';
+            } else {
+                q.style.color = 'green';
+            }
+        }
+    </script>
+</body>
+</html>
