@@ -8,12 +8,24 @@
 <body>
     <p id="mytxt">Aprende JS con MyFPSchool!</p>
     <p id="q1">JS es un lenguaje de programacion</p>
-    <button type="button" onclick=" True('Verdadero', 'q1')" id = "first">Verdadero</button>
-    <button type="button" onclick=" False('Falso', 'q1')" id = "first">Falso</button>
+    <button type="button" onclick=" Evaluate('Verdadero', 'q1')">Verdadero</button>
+    <button type="button" onclick=" Evaluate('Falso', 'q1')">Falso</button>
 
     <p id="q2">HTML es un lenguaje de programacion</p>
-    <button type="button" onclick=" True('Falso', 'q2')" id = "second">Verdadero</button>
-    <button type="button" onclick=" False('Verdadero', 'q2')" id = "second">Falso</button>
+    <button type="button" onclick=" Evaluate('Falso', 'q2')">Verdadero</button>
+    <button type="button" onclick=" Evaluate('Verdadero', 'q2')">Falso</button>
+
+    <p id="q3">JS permite que las páginas tengan dinamismo</p>
+    <button type="button" onclick=" Evaluate('Verdadero', 'q3')">Verdadero</button>
+    <button type="button" onclick=" Evaluate('Falso', 'q3')">Falso</button>
+
+    <p id="q4">El Teide es el pico más alto de España</p>
+    <button type="button" onclick=" Evaluate('Verdadero', 'q4')">Verdadero</button>
+    <button type="button" onclick=" Evaluate('Falso', 'q4')">Falso</button>
+
+    <p id="q5">Django no es un framework de Python</p>
+    <button type="button" onclick=" Evaluate('Falso', 'q5')">Verdadero</button>
+    <button type="button" onclick=" Evaluate('Verdadero', 'q5')">Falso</button>
 
     <button type="button" onclick="myFunction()">Dale!</button>
     <script>
@@ -23,21 +35,12 @@
             x.style.color = "red";
         }
 
-        function True(x, id) {
-            q = document.getElementById(id);
+        function Evaluate(x, id) {
+            var q = document.getElementById(id);
             if (x == 'Verdadero') {
                 q.style.color = 'green';
             } else {
                 q.style.color = 'red';
-            }
-        }
-
-        function False(x, id) {
-            q = document.getElementById(id);
-            if (x == 'Verdadero') {
-                q.style.color = 'red';
-            } else {
-                q.style.color = 'green';
             }
         }
     </script>
