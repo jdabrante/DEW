@@ -1,0 +1,2 @@
+La unica diferencia entre todos los posibles bucles es en el f, ya que en este se inicia desde 0.
+Por otro lado, la diferencia entre utilizar ++i y i++ es cuando se suma la unidad a la variable, es decir, ++i es un preincremento, lo que quiere decir que se le suma una unidad a i antes de empezar el bucle, mientras que i++ es un postincremento.

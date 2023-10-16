@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="number">Numero</label>
+    <input type="number" name="number" id="number" onkeyup="calculate()">
+    <p id="result"></p>
+    <script>
+        function calculate() {
+            let output = ""
+            let number = document.getElementById("number").value;
+            for (let i = 1; i <= number; i++) {
+                if ( (number % i) == 0) {
+                    if ( i == number ) {
+                        output += i;
+                    } else {
+                        output += i + ",";
+                    }
+                }
+            }
+
+            document.getElementById("result").innerHTML = output;
+        }
+
+    </script>
+</body>
+</html>

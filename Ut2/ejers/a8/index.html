@@ -1,0 +1,14 @@
+
+<h1>Ejemplo de Eventos onmouseover, onmouseout y onblur.</h1>
+    <div id="miDiv" onmouseover="mostrarMensaje('Mouse sobre el div')" onmouseout="mostrarMensaje('Mouse fuera del div')">
+      <p>¡Pasa el mouse sobre este div!</p>
+        
+      <input type="text" onblur="mostrarMensaje('El campo de texto ha perdido el foco')" placeholder="Escribe algo y luego haz clic fuera">
+    </div>
+    <p id="mensaje"></p>
+
+    <script>
+    function mostrarMensaje(mensaje) {
+      document.getElementById('mensaje').innerHTML = mensaje;
+    }
+    </script>
