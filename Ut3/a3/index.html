@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <label for="frase">Frase: </label>
+    <input type="text" id="text" onkeyup="calculate()">
+    <br>
+    <label for="palabra">Palabra: </label>
+    <input type="text" id="word" onkeyup="calculate()">
+    <p>Longitud: <span id="result"></span></p>
+    <p>Ultima posición: <span id="position"></span></p>
+    <script>
+        function calculate() {
+            let text = document.getElementById('text').value;
+            let word = document.getElementById('word').value;
+            document.getElementById('result').innerHTML = text.length
+            document.getElementById('position').innerHTML = text.lastIndexOf(word)
+        }
+    </script>
+</body>
+</html>
