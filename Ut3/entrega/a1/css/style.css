@@ -1,0 +1,11 @@
+[class*="table"] {
+    background-color: rosybrown;
+    border: 1px solid white
+}
+
+.title {
+    background-color: lightblue;
+    border: 1px solid white;
+    text-align: center;
+}
+
