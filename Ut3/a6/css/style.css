@@ -1,0 +1,25 @@
+.options {
+    margin-top: 15px;
+    width: 200px;
+    text-align: center;
+}
+
+.button {
+    border: 0px;
+    background-color: lightgray;
+    border-radius: 15px;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.time-result {
+    width: 200px;
+}
+#time {
+    width: 200px;
+    background-color: bisque;
+    border: 0px;
+    border-radius: 15px;
+    height: 30px;
+}
+
