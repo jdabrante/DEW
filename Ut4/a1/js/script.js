@@ -27,8 +27,8 @@ let fecha_nacimiento = new Date(anio_nacimiento, mes_nacimiento, dia_nacimiento)
 let anios = fecha_actual.getFullYear() -  fecha_nacimiento.getFullYear();
 nombre = String(nombre);
 let longitud_nombre = nombre.length
-const dias = ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'];
-const meses = ['Diciembre','Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre']
+const dias = ['domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
+const meses = ['diciembre','enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre']
 document.write(`
 <h1>TAREA DWEC03</h1>
 <p>Buenos días ${nombre}</p>
