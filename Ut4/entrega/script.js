@@ -51,12 +51,13 @@ class Floor{
     }
 
     addDoors(number) {
-        let num_doors = this.doors.length;
+        let num_doors = keys(this.doors).length;
+        console.log(num_doors);
         number = (num_doors == 0) ? number : (num_doors + number);
         let i = (num_doors == 0) ? 0 : num_doors;
         for (i ; i < number; i++) {
             console.log(this.doors)
-            this.doors.i = 'hola';
+            this.doors[i] = 'hola';
         }
     }
 }
