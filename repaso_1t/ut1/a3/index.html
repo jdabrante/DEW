@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Cambio de imágenes con JavaScript</h1>
+
+<img id="myFPImage" onclick="cambiaPic()" src="http://myfpschool.com/wp-content/uploads/2016/06/myblack.jpeg" width="200" height="180">
+
+<p>Haz click sobre la imagen para cambiarla.</p>
+
+<script>
+function cambiaPic() {
+  var image = document.getElementById('myFPImage');
+  if (image.src.match("green")) {
+      image.src = "http://myfpschool.com/wp-content/uploads/2016/06/myblack.jpeg";
+  } else if (image.src.match("black")) {
+      image.src = "https://png.pngtree.com/png-clipart/20230501/ourmid/pngtree-smiling-dogs-with-happy-expressions-png-image_7076852.png"
+  } else {
+      image.src = "http://myfpschool.com/wp-content/uploads/2016/06/mygreen.jpeg";
+  }
+}
+</script>
+
+</body>
+</html>

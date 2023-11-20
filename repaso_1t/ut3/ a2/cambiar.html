@@ -1,0 +1,9 @@
+<input type="text" id="nuevo">
+<button id="cambiar" onclick="cambiar()">Cambiar</button>
+<script>
+    function cambiar() {
+        let nuevo = document.getElementById("nuevo").value;
+        window.opener.document.getElementById("title").innerHTML = nuevo;
+        window.close();
+    }
+</script>

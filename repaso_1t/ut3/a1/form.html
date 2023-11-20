@@ -1,0 +1,23 @@
+<form action="">
+    <label for="nombre">Nombre</label>:
+    <input type="text" id="nombre">
+    <label for="apellidos">Apellidos</label>:
+    <input type="text" id="apellidos">
+    <label for="email">Email</label>:
+    <input type="email" id="email">
+    <label for="fecha">Fecha nacimiento</label>:
+    <input type="date" id="fecha">
+    <button onclick="enviar()">Enviar</button>
+    <script>
+        function enviar() {
+            let nombre = document.getElementById("nombre").value;
+            let apellidos = document.getElementById("apellidos").value;
+            let email = document.getElementById("email").value;
+            let fecha = document.getElementById("fecha").value;
+            window.opener.document.getElementById("nombre").innerHTML = nombre;
+            window.opener.document.getElementById("apellidos").innerHTML = apellidos;
+            window.opener.document.getElementById("email").innerHTML = email;
+            window.opener.document.getElementById("fecha").innerHTML = fecha;
+       }
+    </script>
+</form>
