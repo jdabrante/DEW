@@ -4,28 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formularios</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <form>
-        <p>¿Cuáles de las siguientes frutas son rojas?</p>
-        <input type="checkbox" value="manzana" name="manzana">
-        <label for="">Manzana</label><br>
-        <input type="checkbox">
-        <label for="">Plátanao</label><br>
-        <input type="checkbox">
-        <label for="">Fresa</label><br>
-        <input type="checkbox">
-        <label for="">Mango</label><br>
-        <p>¿Cuál de las siguientes opciones es un color primario?</p>
-        <input type="radio" name="l" id="">
-        <label for="">Rojo</label><br>
-        <input type="radio" name="l" id="">
-        <label for="">Verde</label><br>
-        <input type="radio" name="l" id="">
-        <label for="">Naranja</label><br>
-        <input type="radio" name="l" id="">
-        <label for="">Marrón</label><br>
-        <p></p>
-    </form>
+    <div class="container">
+        <form>
+            <p>¿Cuáles de las siguientes frutas son rojas?</p>
+            <input type="checkbox" value="manzana" name="manzana" id="manzana">
+            <label>Manzana</label><br>
+            <input type="checkbox" value="platano" name="platano" id="platano">
+            <label>Plátanao</label><br>
+            <input type="checkbox" value="fresa" name="fresa" id="fresa">
+            <label>Fresa</label><br>
+            <input type="checkbox" value="mango" name="mango" id="mango">
+            <label>Mango</label><br>
+            <p id="r_frutas"></p>
+            <button id="frutas">Comprobar</button>
+            <p>¿Cuál de las siguientes opciones es un color primario?</p>
+            <input type="radio" name="color" id="rojo">
+            <label>Rojo</label><br>
+            <input type="radio" name="color" id="verde">
+            <label>Verde</label><br>
+            <input type="radio" name="color" id="naranja">
+            <label>Naranja</label><br>
+            <input type="radio" name="color" id="marron">
+            <label>Marrón</label><br>
+            <p id="r_color"></p>
+            <button id="color">Comprobar</button>
+            <p>Selecciona un día de la semana que comience con la letra "J"</p>
+            <select name="days" id="days">
+                <option value="Lunes">Lunes</option>
+                <option value="Martes">Martes</option>
+                <option value="Miercoles">Miercoles</option>
+                <option value="Jueves">Jueves</option>
+                <option value="Viernes">Viernes</option>
+            </select>
+            <br>
+            <p id="r_day"></p>
+            <br>
+            <br>
+            <button id="dia">Comprobar</button>
+            <br>
+            <br>
+            <input type="submit" value="Resultado" id="result">
+        </form>
+    </div>
+    <p id="final_points"></p>
+    <script src="js/script.js"></script>
 </body> 
 </html>

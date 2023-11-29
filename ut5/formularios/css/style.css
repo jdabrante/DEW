@@ -1,0 +1,40 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container  {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+
+form {
+    background-color: whitesmoke;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+button {
+    border: none;
+    border-radius: 10px;
+    background-color: lightblue;
+    padding: 10px;
+}
+
+select {
+    border: none;
+    border-radius: 10px;
+    background-color: lightblue;
+    padding: 10px;
+}
+
+#result {
+    border: none;
+    border-radius: 10px;
+    background-color: lightgreen;
+    padding: 10px;
+}
