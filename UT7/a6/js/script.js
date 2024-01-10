@@ -3,9 +3,6 @@ const button2 = $("#button2")
 const div = $("#div")
 
 button1.click(function() {
-    div.addClass("hola")
+    div.toggleClass("hola")
 })
 
-button2.click(function() {
-    div.removeClass("hola")
-})
