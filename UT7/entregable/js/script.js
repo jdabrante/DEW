@@ -2,32 +2,65 @@ let noticia = document.getElementById('noticias');
 let createRSS = document.getElementById('crearRSS');
 let deleteRSS = document.getElementById('borrarRSS');
 let choiceRSS = document.getElementById('campoSelect');
+const baseUrl = 'server.php?url='
 
 createRSS.addEventListener('click', () => {
     let rssName = prompt('Introduce un titulo para el RSS');
     let rssUrl = prompt('Introduce la URL');
-    localStorage.setItem(rssName, rssUrl);
+    if (localStorage.length == 0) {
+        localStorage['rss'] = JSON.stringify([{'name': rssName, 'url': rssUrl}])
+    } else {
+        let localstorageData = JSON.parse(localStorage['rss'])
+        localstorageData.push({'name': rssName, 'url': rssUrl})
+        localStorage['rss'] = JSON.stringify(localstorageData)
+    }
     noticia.innerHTML = ""
-    choiceRSS.innerHTML += `<option value='${rssUrl}'>${rssName}</option>`
+    let option = document.createElement("option")
+    option.value = rssUrl
+    option.innerHTML = rssName
+    choiceRSS.appendChild(option)
     asyncPetition(rssUrl)
-})
+});
 
 deleteRSS.addEventListener('click', () => {
     let name = prompt('Introduce el nombre de RSS que desea borrar');
-    localStorage.removeItem(name);
     noticia.innerHTML = ""
-    let firstRss = localStorage.getItem(localStorage.key(0))
+    let localstorageData = JSON.parse(localStorage['rss'])
+    let new_localstorageData = []
+    localstorageData.forEach((element) => {
+        if (element['name'] != name) {
+            new_localstorageData.push(element)
+        }
+    })
+    localStorage['rss'] = JSON.stringify(new_localstorageData)
+    let firstRss = JSON.parse(localStorage['rss'])[0]["url"]
     asyncPetition(firstRss)
-    location.reload()
+    choiceRSS = document.createElement('select')
+    choiceRSS.id = 'campoSelect'
+    choiceRSS.name = 'campoSelect'
+    for (let i=0; i < localstorageData.length; i++) {
+        let url = localstorageData[i]['url']
+        let name = localstorageData[i]['name']
+        let option = document.createElement("option")
+        option.value = url
+        option.innerHTML = name
+        choiceRSS.appendChild(option)
+    }
+
 })
 
 document.addEventListener('DOMContentLoaded', () => {
-    let firstRss = localStorage.getItem(localStorage.key(0))
-    asyncPetition(firstRss)
-
-    for (let i=0; i < localStorage.length; i++) {
-        choiceRSS.innerHTML += `<option value='${localStorage.getItem(localStorage.key(i))}'>${localStorage.key(i)}</option>`
+    let localstorageData = JSON.parse(localStorage['rss'])
+    for (let i=0; i < localstorageData.length; i++) {
+        let url = localstorageData[i]['url']
+        let name = localstorageData[i]['name']
+        let option = document.createElement("option")
+        option.value = url
+        option.innerHTML = name
+        choiceRSS.appendChild(option)
     }
+    let firstRss = JSON.parse(localStorage['rss'])[0]['url']
+    asyncPetition(firstRss)
 })
 
 choiceRSS.addEventListener('change', () => {
@@ -37,16 +70,22 @@ choiceRSS.addEventListener('change', () => {
 })
 
 function asyncPetition(url) {
-    fetch(`server.php?url=${url}`)
+    fetch(baseUrl + url)
     .then(response => response.json())
     .then(data => {
         let channel = data['channel']['item']
         channel.forEach(element => {
-            noticia.innerHTML += `<a href='${element['link']}'><h2>${element['title']}</a></h2><br><p>${element['description']}</p>`
+            let div = document.createElement('div')
+            let link = document.createElement('a')
+            let title = document.createElement('h2')
+            let content = document.createElement('p')
+            link.href = element['link']
+            title.innerHTML = element['title']
+            link.appendChild(title)
+            content.innerHTML = element['description']
+            div.appendChild(link)
+            div.appendChild(content)
+            noticia.appendChild(div)
         });
     });
 }
-
-
-
-
