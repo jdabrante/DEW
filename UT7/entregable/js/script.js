@@ -19,14 +19,16 @@ createRSS.addEventListener('click', () => {
     option.value = rssUrl
     option.innerHTML = rssName
     choiceRSS.appendChild(option)
+    choiceRSS.options[choiceRSS.options.length -1].selected = true
     asyncPetition(rssUrl)
 });
 
 deleteRSS.addEventListener('click', () => {
-    let name = prompt('Introduce el nombre de RSS que desea borrar');
     noticia.innerHTML = ""
     let localstorageData = JSON.parse(localStorage['rss'])
     let new_localstorageData = []
+    let name = choiceRSS.options[choiceRSS.selectedIndex].innerHTML
+    choiceRSS.remove(choiceRSS.selectedIndex)
     localstorageData.forEach((element) => {
         if (element['name'] != name) {
             new_localstorageData.push(element)
@@ -35,18 +37,6 @@ deleteRSS.addEventListener('click', () => {
     localStorage['rss'] = JSON.stringify(new_localstorageData)
     let firstRss = JSON.parse(localStorage['rss'])[0]["url"]
     asyncPetition(firstRss)
-    choiceRSS = document.createElement('select')
-    choiceRSS.id = 'campoSelect'
-    choiceRSS.name = 'campoSelect'
-    for (let i=0; i < localstorageData.length; i++) {
-        let url = localstorageData[i]['url']
-        let name = localstorageData[i]['name']
-        let option = document.createElement("option")
-        option.value = url
-        option.innerHTML = name
-        choiceRSS.appendChild(option)
-    }
-
 })
 
 document.addEventListener('DOMContentLoaded', () => {
