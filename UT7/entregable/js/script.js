@@ -4,7 +4,7 @@ let deleteRSS = document.getElementById('borrarRSS');
 let choiceRSS = document.getElementById('campoSelect');
 const baseUrl = 'server.php?url='
 
-// Eveneto para añadir un nuevo RSS en el localstorage, añadiéndolo además al select y mostrandolo en pantalla
+// Evento para añadir un nuevo RSS en el localstorage, añadiéndolo además al select y mostrandolo en pantalla
 
 createRSS.addEventListener('click', () => {
     let rssName = prompt('Introduce un titulo para el RSS');
@@ -25,7 +25,7 @@ createRSS.addEventListener('click', () => {
     asyncPetition(rssUrl)
 });
 
-// Eveneto que borra el RSS que está seleccionado del localstorage y muestra el primer RSS en pantalla
+// Evento que borra el RSS que está seleccionado del localstorage y muestra el primer RSS en pantalla
 
 deleteRSS.addEventListener('click', () => {
     noticia.innerHTML = ""
