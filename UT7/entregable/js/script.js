@@ -4,6 +4,8 @@ let deleteRSS = document.getElementById('borrarRSS');
 let choiceRSS = document.getElementById('campoSelect');
 const baseUrl = 'server.php?url='
 
+// Eveneto para añadir un nuevo RSS en el localstorage, añadiéndolo además al select y mostrandolo en pantalla
+
 createRSS.addEventListener('click', () => {
     let rssName = prompt('Introduce un titulo para el RSS');
     let rssUrl = prompt('Introduce la URL');
@@ -23,6 +25,8 @@ createRSS.addEventListener('click', () => {
     asyncPetition(rssUrl)
 });
 
+// Eveneto que borra el RSS que está seleccionado del localstorage y muestra el primer RSS en pantalla
+
 deleteRSS.addEventListener('click', () => {
     noticia.innerHTML = ""
     let localstorageData = JSON.parse(localStorage['rss'])
@@ -39,6 +43,8 @@ deleteRSS.addEventListener('click', () => {
     asyncPetition(firstRss)
 })
 
+// Evento que añade todas las RSS con su nombre y urls al select como opciones y además muestra el primer RSS en pantalla
+
 document.addEventListener('DOMContentLoaded', () => {
     let localstorageData = JSON.parse(localStorage['rss'])
     for (let i=0; i < localstorageData.length; i++) {
@@ -53,11 +59,15 @@ document.addEventListener('DOMContentLoaded', () => {
     asyncPetition(firstRss)
 })
 
+// Evento para cambiar de RSS
+
 choiceRSS.addEventListener('change', () => {
     let url = choiceRSS.options[choiceRSS.selectedIndex].value
     noticia.innerHTML = ""
     asyncPetition(url)
 })
+
+// Función que realiza el fetch al RSS y mostrar el contenido en pantalla
 
 function asyncPetition(url) {
     fetch(baseUrl + url)
