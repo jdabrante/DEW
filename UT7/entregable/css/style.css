@@ -13,7 +13,7 @@ body{
 #cabecera{
 	height: 32px;
 	line-height: 26px;
-	background-color: #1677ED;
+	background-color: #4e95ec;
 	font-size: 20px;
 	padding: 2px;
 }
@@ -28,7 +28,7 @@ body{
 #seccionFeeds{
 	height: 600px;
 	position: relative;
-	background: #48B3F2;
+	background: #4e95ec;
 	padding: 0 0 0 10px;
 }
 
