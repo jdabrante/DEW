@@ -1,5 +1,5 @@
-let nombre = document.getElementById("nombre")
-let apellidos = document.getElementById("apellidos")
+let nombre = $("#nombre")
+let apellidos = $("#apellidos")
 
 
 function outFocusUpper(paramenter) {
@@ -10,17 +10,17 @@ function outFocusUpper(paramenter) {
 
 function checkBlankParameter(parameter){
     if (parameter.value == "") {
-        document.getElementById('errores').innerHTML = `El campo ${parameter.id} está en blanco`
+       $('#errores').innerHTML = `El campo ${parameter.id} está en blanco`
         parameter.focus()
         return false
     }
     return true
 }
 
-let error = document.getElementById('errores')
+let error = $('#errores')
 
 function checkAge() {
-    let age = document.getElementById('edad')
+    let age = $('#edad')
     if (age.value > 105 || age.value < 0 || age.value == "") {
         error.innerHTML = `El campo ${age.id} es erroneo`
         age.focus()
@@ -32,7 +32,7 @@ function checkAge() {
 function checkDNI() {
     // Expresión regular para hacer match con una cadena que comience con 8 dígitos, un guión medio "-" y termine con una letra en mayusculas o miníscula
     let re = /^\d{8}-[A-Z,a-z]$/
-    let nif = document.getElementById('nif')
+    let nif = $('#nif')
     if (re.exec(nif.value) == null) {
         error.innerHTML = `El campo ${nif.id} es erroneo`
         nif.focus()
@@ -45,7 +45,7 @@ function checkEmail() {
     // Expresión regular para hacer match con una cadena que empiece con uno o mas números o letras, 
     // una arroba "@", uno o más letras, un punto y  termine con una o más letras minúsculas
     let re = /^[a-z,A-Z,0-9]+@{1}[a-z,A-Z]+\.{1}[a-z]+$/
-    let email = document.getElementById('email')
+    let email = $('#email')
     if (re.exec(email.value) == null) {
         error.innerHTML = `El campo ${email.id} es erroneo` 
         email.focus()
@@ -55,7 +55,7 @@ function checkEmail() {
 }
 
 function checkProvince() {
-    let province = document.getElementById('provincia')
+    let province = $('#provincia')
     if (province.value == "0") {
         error.innerHTML = `El campo ${province.id} no está seleccionado`
         province.focus()
@@ -68,7 +68,7 @@ function checkDate() {
     // Expresión regular para cadenas de texto que empiecen "^" por cadenas de dos dígitos
     // y el útlmo de 4 separados por barras "/" o "|" guines medios "-". Terminando en ambos casos por el número de 4 dígitos ( el año)
     let re = /^\d{2}\/\d{2}\/\d{4}$|\d{2}-\d{2}-\d{4}$/
-    let date = document.getElementById('fecha')
+    let date = $('#fecha')
     if (!re.exec(date.value)) {
         error.innerHTML = `El campo ${date.id} está vacio`
         date.focus()
@@ -80,7 +80,7 @@ function checkDate() {
 function checkPhone() {
     // Expresión regular que empiece y termina por 9 dígitos
     let re = /^\d{9}$/
-    let phone = document.getElementById('telefono')
+    let phone = $('#telefono')
     if (!re.exec(phone.value)) {
         error.innerHTML = `El campo ${phone.id} no es correcto`
         phone.focus()
@@ -92,7 +92,7 @@ function checkPhone() {
 function checkHour() {
     // Expresión regular que empiece por dós dígitos, siga con dos puntos ":" y termine con dos dígitos
     let re = /^\d{2}:\d{2}$/
-    let hour = document.getElementById('hora')
+    let hour = $('#hora')
     if (!re.exec(hour.value)) {
         error.innerHTML = `El campo ${hour.id} no es correcto`
         hour.focus()
@@ -102,7 +102,7 @@ function checkHour() {
 }
 
 tries = 0
-intentos = document.getElementById('intentos')
+intentos = $('#intentos')
 document.cookie = 'intentos=' + encodeURIComponent(tries)
 
 function addTry() {
@@ -142,8 +142,8 @@ outFocusUpper(apellidos)
 
 const PROURL = 'provincias.php'
 
-let selectProvince = document.getElementById('provincia')
-let selectMuni = document.getElementById('municipio')
+let selectProvince = $('#provincia')
+let selectMuni = $('#municipio')
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -164,7 +164,6 @@ selectProvince.addEventListener('change', () => {
     getMuni(provinceCode)
 
 })
-
 
 
 function getMuni(provinceCode) {
