@@ -1,29 +1,14 @@
 let nombre = $("#nombre")
 let apellidos = $("#apellidos")
+let error = $('#errores')
+let address = $('#direccion')
 
-
-function outFocusUpper(paramenter) {
-    paramenter.addEventListener("focusout", () => {
-        paramenter.value = paramenter.value.toUpperCase()
-    })
-}
+// Funcion para comprobar parámetros en blanco
 
 function checkBlankParameter(parameter){
-    if (parameter.value == "") {
-       $('#errores').innerHTML = `El campo ${parameter.id} está en blanco`
+    if (parameter.val() == "") {
+        error.html(`El campo ${parameter.attr('id')} está en blanco`)
         parameter.focus()
-        return false
-    }
-    return true
-}
-
-let error = $('#errores')
-
-function checkAge() {
-    let age = $('#edad')
-    if (age.value > 105 || age.value < 0 || age.value == "") {
-        error.innerHTML = `El campo ${age.id} es erroneo`
-        age.focus()
         return false
     }
     return true
@@ -31,11 +16,31 @@ function checkAge() {
 
 function checkDNI() {
     // Expresión regular para hacer match con una cadena que comience con 8 dígitos, un guión medio "-" y termine con una letra en mayusculas o miníscula
-    let re = /^\d{8}-[A-Z,a-z]$/
+    let re =  /^\d{8}[A-Za-z]$/
     let nif = $('#nif')
-    if (re.exec(nif.value) == null) {
-        error.innerHTML = `El campo ${nif.id} es erroneo`
+    let dniNumber = nif.val().substring(0, 8)
+    let dniLetter = nif.val().charAt(8)
+    let possibleLetters = 'TRWAGMYFPDXBNJZSQVHLCKE'
+    let realLetter = possibleLetters.charAt(dniNumber % 23)
+    console.log(nif.val())
+    if (re.exec(nif.val()) == null) {
+        error.html(`El campo ${nif.attr('id')} está vacio`)
         nif.focus()
+        return false
+    } else if (dniLetter != realLetter) {
+        error.html(`El campo ${nif.attr('id')} es incorrecto`)
+        nif.focus()
+        return false
+    }
+    return true
+}
+
+function checkPostalCode() {
+    let re = /^\d{5}$/
+    let postal_code = $('#codigo_postal')
+    if (!re.exec(postal_code.val())) {
+        error.html(`El campo ${postal_code.attr('id')} no es correcto`)
+        postal_code.focus()
         return false
     }
     return true
@@ -46,8 +51,8 @@ function checkEmail() {
     // una arroba "@", uno o más letras, un punto y  termine con una o más letras minúsculas
     let re = /^[a-z,A-Z,0-9]+@{1}[a-z,A-Z]+\.{1}[a-z]+$/
     let email = $('#email')
-    if (re.exec(email.value) == null) {
-        error.innerHTML = `El campo ${email.id} es erroneo` 
+    if (re.exec(email.val()) == null) {
+        error.html(`El campo ${email.attr('id')} es erroneo` )
         email.focus()
         return false
     }
@@ -56,8 +61,8 @@ function checkEmail() {
 
 function checkProvince() {
     let province = $('#provincia')
-    if (province.value == "0") {
-        error.innerHTML = `El campo ${province.id} no está seleccionado`
+    if (province.val() == "0") {
+        error.html(`El campo ${province.attr('id')} no está seleccionado`)
         province.focus()
         return false
     }
@@ -65,12 +70,9 @@ function checkProvince() {
 }
 
 function checkDate() {
-    // Expresión regular para cadenas de texto que empiecen "^" por cadenas de dos dígitos
-    // y el útlmo de 4 separados por barras "/" o "|" guines medios "-". Terminando en ambos casos por el número de 4 dígitos ( el año)
-    let re = /^\d{2}\/\d{2}\/\d{4}$|\d{2}-\d{2}-\d{4}$/
     let date = $('#fecha')
-    if (!re.exec(date.value)) {
-        error.innerHTML = `El campo ${date.id} está vacio`
+    if (date.val() == "") {
+        error.html(`El campo ${date.attr('id')} está vacio`)
         date.focus()
         return false
     }
@@ -81,8 +83,8 @@ function checkPhone() {
     // Expresión regular que empiece y termina por 9 dígitos
     let re = /^\d{9}$/
     let phone = $('#telefono')
-    if (!re.exec(phone.value)) {
-        error.innerHTML = `El campo ${phone.id} no es correcto`
+    if (!re.exec(phone.val())) {
+        error.html(`El campo ${phone.attr('id')} no es correcto`)
         phone.focus()
         return false
     }
@@ -93,74 +95,65 @@ function checkHour() {
     // Expresión regular que empiece por dós dígitos, siga con dos puntos ":" y termine con dos dígitos
     let re = /^\d{2}:\d{2}$/
     let hour = $('#hora')
-    if (!re.exec(hour.value)) {
-        error.innerHTML = `El campo ${hour.id} no es correcto`
+    if (!re.exec(hour.val())) {
+        error.html(`El campo ${hour.attr('id')} no es correcto`)
         hour.focus()
         return false
     }
     return true
 }
 
-tries = 0
-intentos = $('#intentos')
-document.cookie = 'intentos=' + encodeURIComponent(tries)
-
-function addTry() {
-    tries += 1
-    document.cookie = 'try=' + encodeURIComponent(tries)
-    // En este punto cre que el reverse no deberia de ser necesario, pero por algún motivo la coockie añadida me sale
-    // como último elemento del array de cookies.
-    let cookie = document.cookie.split(";").reverse()[0].split("=")[1]
-    intentos.innerHTML = `Intento de Evíos del formulario: ${cookie}`
+function checkConditions() {
+    let condition = $('#condiciones')
+    if (condition.is(':checked')) {
+        return true
+    } else {
+        error.html('No se han acceptado las condiciones')
+        condition.focus()
+        return false
+    }
 }
 
-document.getElementById('enviar').addEventListener('click', (event)=>{
-    if (checkBlankParameter(nombre) && checkBlankParameter(apellidos) && checkAge() && 
-    checkDNI() && checkEmail() && checkProvince() && checkDate() && 
-    checkDate() && checkPhone() && checkHour()) {
+// Comprobación de todos los campos
+
+$('#enviar').on('click', (event)=>{
+    if (checkBlankParameter(nombre) && checkBlankParameter(apellidos) && checkDate() && checkDNI() && checkBlankParameter(address) && 
+    checkPostalCode() &&  checkProvince() && 
+    checkPhone() && checkEmail() && checkConditions()) {
         if (confirm('¿Quiere enviar el formulario?')) {
             return true
         } else {
             event.preventDefault()
-            addTry()
             return false
         }
     } else {
         event.preventDefault()
-        addTry()
         return false
     }
 })
 
-
-
-
-outFocusUpper(nombre)
-outFocusUpper(apellidos)
-
-// Cargado de provincias 
+// Cargado de provincias y municipios
 
 const PROURL = 'provincias.php'
 
 let selectProvince = $('#provincia')
 let selectMuni = $('#municipio')
 
-document.addEventListener('DOMContentLoaded', () => {
+$(document).ready(() => {
 
     fetch('provincias.php')
     .then(response => response.json())
     .then(data => {
         Object.keys(data).forEach(key => {
-            let option = document.createElement('option')
-            option.value = key
-            option.innerHTML = data[key]
-            selectProvince.appendChild(option)
+            let value = data[key]
+            let option = $('<option>').attr('value', key).text(value)
+            selectProvince.append(option)
         })
     })
 })
 
-selectProvince.addEventListener('change', () => {
-    let provinceCode = selectProvince.options[selectProvince.selectedIndex].value
+selectProvince.on('change', () => {
+    let provinceCode = selectProvince.val()
     getMuni(provinceCode)
 
 })
@@ -176,12 +169,11 @@ function getMuni(provinceCode) {
     })
        .then(response => response.json())
        .then(data => {
-            selectMuni.innerHTML = ""
+            selectMuni.html("")
             Object.keys(data).forEach(key => {
-                let option = document.createElement('option')
-                option.value = key
-                option.innerHTML = data[key]
-                selectMuni.appendChild(option)
+                let value = data[key]
+                let option = $('<option>').attr('value', key).text(value)
+                selectMuni.append(option)
             })
        })
 }
